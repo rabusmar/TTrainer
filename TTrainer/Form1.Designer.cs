@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnExec = new System.Windows.Forms.Button();
             this.txtCmd = new System.Windows.Forms.TextBox();
             this.rbP1 = new System.Windows.Forms.RadioButton();
@@ -59,6 +60,7 @@
             this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuT7K1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuT7K2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grdCommands)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -92,6 +94,7 @@
             this.rbP1.Size = new System.Drawing.Size(61, 29);
             this.rbP1.TabIndex = 1;
             this.rbP1.Text = "P1";
+            this.toolTip1.SetToolTip(this.rbP1, "Ctrl+Shift+S to toggle");
             this.rbP1.UseVisualStyleBackColor = true;
             // 
             // rbP2
@@ -105,6 +108,7 @@
             this.rbP2.TabIndex = 2;
             this.rbP2.TabStop = true;
             this.rbP2.Text = "P2";
+            this.toolTip1.SetToolTip(this.rbP2, "Ctrl+Shift+S to toggle");
             this.rbP2.UseVisualStyleBackColor = true;
             // 
             // btnDown
@@ -258,11 +262,12 @@
             // 
             this.chkActivate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.chkActivate.AutoSize = true;
-            this.chkActivate.Location = new System.Drawing.Point(888, 465);
+            this.chkActivate.Location = new System.Drawing.Point(888, 490);
             this.chkActivate.Name = "chkActivate";
-            this.chkActivate.Size = new System.Drawing.Size(151, 79);
+            this.chkActivate.Size = new System.Drawing.Size(151, 54);
             this.chkActivate.TabIndex = 15;
-            this.chkActivate.Text = "Activate auto\r\nexecution\r\nCtrl+Shift+E";
+            this.chkActivate.Text = "Activate auto\r\nexecution";
+            this.toolTip1.SetToolTip(this.chkActivate, "Ctrl+Shift+E to toggle");
             this.chkActivate.UseVisualStyleBackColor = true;
             this.chkActivate.CheckedChanged += new System.EventHandler(this.chkActivate_CheckedChanged);
             // 
@@ -447,6 +452,7 @@
         private System.Windows.Forms.ToolStripMenuItem configurationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuT7K1;
         private System.Windows.Forms.ToolStripMenuItem mnuT7K2;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

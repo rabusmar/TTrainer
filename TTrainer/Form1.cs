@@ -13,16 +13,21 @@ namespace TTrainer
         int line = 0;
         string filename = null;
         Thread thread = null;
-        KeyboardShortcut hook = new KeyboardShortcut();
+        KeyboardShortcut hook1 = new KeyboardShortcut(), hook2 = new KeyboardShortcut();
 
         public Form1()
         {
             InitializeComponent();
 
             // register the event that is fired after the key press.
-            hook.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook_KeyPressed);
+            hook1.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook1_KeyPressed);
             // register the control + shift + e combination as hot key.
-            hook.RegisterHotKey(ModKeys.Control | ModKeys.Shift, Keys.E);
+            hook1.RegisterHotKey(ModKeys.Control | ModKeys.Shift, Keys.E);
+
+            // register the event that is fired after the key press.
+            hook2.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook2_KeyPressed);
+            // register the control + shift + s combination as hot key.
+            hook2.RegisterHotKey(ModKeys.Control | ModKeys.Shift, Keys.S);
         }
 
         private void btnExec_Click(object sender, EventArgs e)
@@ -306,9 +311,21 @@ namespace TTrainer
             }
         }
 
-        private void hook_KeyPressed(object sender, KeyPressedEventArgs e)
+        private void hook1_KeyPressed(object sender, KeyPressedEventArgs e)
         {
             chkActivate.Checked = !chkActivate.Checked;
+        }
+
+        private void hook2_KeyPressed(object sender, KeyPressedEventArgs e)
+        {
+            if (rbP1.Checked)
+            {
+                rbP2.Checked = true;
+            }
+            else
+            {
+                rbP1.Checked = true;
+            }
         }
 
         private void chkActivate_CheckedChanged(object sender, EventArgs e)
