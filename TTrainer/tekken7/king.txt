@@ -1,0 +1,246 @@
+#10 1,2 grab
+1 w(3) 2 w(10) 24
+
+#10 1,2,1 grab
+1 w(3) 2 w(10) 1 w(20) 24
+
+#10 1,2,1,1,2
+1 w(3) 2 w(10) 1 w(20) 1 w(15) 2
+
+#25 1+2,1
+12 w(10) 1
+
+#25 1+2,1 b cancel
+12 w(10) 1 w(25) b(10) w(12) b1
+
+#25 1+2,3
+12 w(10) 3
+
+#50 JGS 2
+34 w(20) 2
+
+#25 JGS 1+4 grab
+34 w(20) 14
+
+#25 JGS 2+3 grab
+34 w(20) 23
+
+#40 1+4 moonsault
+14
+
+#50 f2,1
+f2 w(10) 1
+
+#25 f2,d1
+f2 w(10) d1
+
+#25 f2,d1,2
+f2 w(10) d1 w(40) 2
+
+#50 f1+2~
+f(60)1(60)2(60)
+
+#30 f2+3 powercrush
+f23
+
+#50 df1,2
+df1 w(20) 2
+
+#50 df2,1
+df2 w(10) 1
+
+#25 df2 into mid check
+df2 w(30) df2
+
+#20 df3,4
+df3 w(10) 4
+
+#20 df3,4 into mid check
+df3 w(35) df2
+
+#15 df4,3,4
+df4 w(10) 3 w(20) 4
+
+#15 df4,3,4 b
+df4 w(10) 3 w(20) 4 w(30) b(10) w(35) d(10)b(10)
+
+#30 df4,3,d4
+df4 w(10) 3 w(20) d4
+
+#50 df3+4 frankensteiner
+df34
+
+#20 d1,2
+d1 w(5) 2
+
+#50 d1+2 atlas hammer
+d12
+
+#20 d3+4,2 ali kick
+d34 w(10) 2
+
+#20 d3+4,4 ali kick
+d34 w(10) 4
+
+#20 d3+4,4,2 ali kick
+d34 w(10) 4 w(20) 2
+
+#20 d3+4,4,4 ali kick
+d34 w(10) 4 w(20) 4
+
+#20 d3+4,4,4,2 ali kick
+d34 w(10) 4 w(20) 4 w(20) 2
+
+#50 db2
+db2
+
+#200 db3
+db3
+
+#100 db4
+db4
+
+#20 b1,2
+b1 w(7) 2
+
+#20 b1,4
+b1 w(7) 4
+
+#20 b2,1
+b2 w(8) 1
+
+#20 b2,4
+b2 w(8) 4
+
+#20 b2,1+2
+b2 w(8) 12
+
+#20 b4 into d3
+b4 w(45) d3
+
+#20 b4 into BT 3
+b4 w(45) 3
+
+#20 b4 into BT d4
+b4 w(45) d4
+
+#20 b4 into BT 1+2
+b4 w(45) 12
+
+#20 b4 into BT 1+4
+b4 w(45) 14
+
+#20 uf3
+uf3
+
+#50 uf4
+uf4
+
+#20 uf1+2~ burning knuckle
+u(60)f(60)1(60)2(60)
+
+#20 u2
+u2
+
+#50 f,f,n,2
+f w(7) f w(7) 2
+
+#20 f,f2,1
+f,,f(2),2 w(20) 1
+
+#50 f,f4
+f,,f(2),4
+
+#20 f,f2+3
+f,,f(2),23
+
+#50 cd 1 leg breaker
+f,,d(3),f(2),1
+
+#50 cd ws1+2
+f(2),,d(6),,,f(6) w(7) 12
+
+#50 cd 1+4 grab
+f,,d(2),f(2),14
+
+#50 cd 2+3 grab
+f,,d(2),f(2),23
+
+#50 cd muscle buster
+f(2),,d(6),,,f(6) w(7) f(2),d(3),,b(2),12
+
+#20 wr3+4 running explorer into toe kick
+f,,f,,f(2),34 w(65) d3
+
+#20 wr3+4 running explorer into getup 3
+f,,f,,f(2),34 w(65) 3
+
+#20 wr3+4 running explorer into getup 4
+f,,f,,f(2),34 w(65) 4
+
+#20 wr3+4 running explorer into spring
+f,,f,,f(2),34 w(65) 34
+
+#20 ws2,2
+d(6)b(6) w(6) 2 w(8) 2
+
+#20 ws1+2
+d(6)b(6) w(6) 12
+
+#50 FC df2
+d(10)b(10) w(10) d(2)f(2),2
+
+#10 10 hit string 1
+1 w(3) 2 w(10) 1 w(20) 1 w(15) 2 w(25) 4 w(20) 4 w(20) 4 w(30) 1 w(30) 3
+
+#10 10 hit string 2
+1 w(3) 2 w(10) 1 w(20) 1 w(15) 3 w(30) 3 w(30) 4 w(30) 3 w(30) 2 w(30) 12
+
+#20 1+3 grab
+13
+
+#50 f1+3 grab
+f13
+
+#20 2+4 grab
+24
+
+#50 f2+4 grab
+f24
+
+#50 df2+3 grab
+df23
+
+#50 db2+3 grab
+db23
+
+#50 b1+2 special grab
+b12
+
+#50 u1+2 grab
+u12
+
+#50 db,f2+4 grab toombstone
+db,,f24
+
+#50 qcf1 grab
+d(2),f(3),,1
+
+#50 qcb1+2 grab muscle buster
+d(2),b(3),,12
+
+#100 f,hcf1 grab giant swing
+f,,b(2),d(3),,f(2),1
+
+#50 f,hcf2 grab tijuana twister
+f,,b(2),d(3),,f(2),2
+
+#50 wr2+4 grab shining wizard
+f,,f,,f(2),24
+
+#50 FC db,d,db1+2 grab
+d(10)b(10) w(10) d(4),b,,b12
+
+#100 FC d1+2 ultimate tackle
+d(6)b(6) w(6) d12
+
