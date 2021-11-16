@@ -287,25 +287,23 @@ namespace TTrainer
             while (true)
             {
                 term = Interaction.InputBox("Search term", "Search", term);
-                if (term == null)
+                if (string.IsNullOrEmpty(term))
                 {
                     return;
                 }
-                if (term != "")
+
+                var n = grdCommands.Rows.Count;
+                for (var i = 0; i < n; i++)
                 {
-                    var n = grdCommands.Rows.Count;
-                    for (var i = 0; i < n; i++)
+                    var row = grdCommands.Rows[i];
+                    if (row.Cells["colText"].Value.ToString().IndexOf(term, StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
-                        var row = grdCommands.Rows[i];
-                        if (row.Cells["colText"].Value.ToString().IndexOf(term) != -1)
-                        {
-                            txtCmd.Text = row.Cells["colCmd"].Value.ToString();
-                            txtFreq.Text = row.Cells["colFreq"].Value.ToString();
-                            txtDescription.Text = row.Cells["colText"].Value.ToString();
-                            grdCommands.CurrentCell = row.Cells[0];
-                            grdCommands.Refresh();
-                            return;
-                        }
+                        txtCmd.Text = row.Cells["colCmd"].Value.ToString();
+                        txtFreq.Text = row.Cells["colFreq"].Value.ToString();
+                        txtDescription.Text = row.Cells["colText"].Value.ToString();
+                        grdCommands.CurrentCell = row.Cells[0];
+                        grdCommands.Refresh();
+                        return;
                     }
                 }
             }

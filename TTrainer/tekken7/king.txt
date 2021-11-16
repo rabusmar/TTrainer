@@ -40,7 +40,7 @@ f2 w(10) d1 w(40) 2
 #50 f1+2~
 f(60)1(60)2(60)
 
-#30 f2+3 powercrush
+#30 f2+3 power crush
 f23
 
 #50 df1,2
@@ -238,7 +238,7 @@ f,,b(2),d(3),,f(2),2
 #50 wr2+4 grab shining wizard
 f,,f,,f(2),24
 
-#50 FC db,d,db1+2 grab
+#50 FC db,d,db1+2 grab rock bottom
 d(10)b(10) w(10) d(4),b,,b12
 
 #100 FC d1+2 ultimate tackle
