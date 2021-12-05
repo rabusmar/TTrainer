@@ -14,6 +14,7 @@ namespace TTrainer
         string filename = null;
         Thread thread = null;
         KeyboardShortcut hook1 = new KeyboardShortcut(), hook2 = new KeyboardShortcut();
+        string term = "";
 
         public Form1()
         {
@@ -283,7 +284,6 @@ namespace TTrainer
 
         private void findToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string term = "";
             while (true)
             {
                 term = Interaction.InputBox("Search term", "Search", term);
@@ -295,12 +295,13 @@ namespace TTrainer
                 var n = grdCommands.Rows.Count;
                 for (var i = 0; i < n; i++)
                 {
-                    var row = grdCommands.Rows[i];
-                    if (row.Cells["colText"].Value.ToString().IndexOf(term, StringComparison.CurrentCultureIgnoreCase) != -1)
+                    var row = grdCommands.Rows[(line + i) % n];
+                    var text = row.Cells["colText"].Value.ToString();
+                    if (text.IndexOf(term, StringComparison.CurrentCultureIgnoreCase) != -1)
                     {
                         txtCmd.Text = row.Cells["colCmd"].Value.ToString();
                         txtFreq.Text = row.Cells["colFreq"].Value.ToString();
-                        txtDescription.Text = row.Cells["colText"].Value.ToString();
+                        txtDescription.Text = text;
                         grdCommands.CurrentCell = row.Cells[0];
                         grdCommands.Refresh();
                         return;
@@ -343,7 +344,7 @@ namespace TTrainer
                         while (true)
                         {
                             // get next index
-                            if (chkRandom.Checked)
+                            if (mnuRandomize.Checked)
                             {
                                 if (list == null)
                                 {
@@ -370,14 +371,18 @@ namespace TTrainer
                                 }
                             }
 
-                            // try to clean previous state as much as possible
-                            Thread.Sleep(2000);
-                            executeCmd("b", 1).Join();
-                            Thread.Sleep(1000);
+                            // execute 2 times to practice punish if repeat is enabled
+                            for (var i = 0; i < (mnuRepeat.Checked ? 2 : 1); i++)
+                            {
+                                // try to clean previous state as much as possible
+                                Thread.Sleep(2000);
+                                executeCmd("b", 1).Join();
+                                Thread.Sleep(1000);
 
-                            // execute command
-                            var cmd = grdCommands.Rows[index < grdCommands.Rows.Count ? index : 0].Cells["colCmd"].Value.ToString();
-                            executeCmd(cmd, index + 1).Join();
+                                // execute command
+                                var cmd = grdCommands.Rows[index < grdCommands.Rows.Count ? index : 0].Cells["colCmd"].Value.ToString();
+                                executeCmd(cmd, index + 1).Join();
+                            }
                         }
                     }
                     catch (ThreadAbortException)
@@ -398,6 +403,16 @@ namespace TTrainer
         {
             mnuT7K1.Checked = true;
             mnuT7K2.Checked = false;
+        }
+
+        private void mnuRandomize_Click(object sender, EventArgs e)
+        {
+            mnuRandomize.Checked = !mnuRandomize.Checked;
+        }
+
+        private void mnuRepeat_Click(object sender, EventArgs e)
+        {
+            mnuRepeat.Checked = !mnuRepeat.Checked;
         }
 
         private void mnuT7K2_Click(object sender, EventArgs e)

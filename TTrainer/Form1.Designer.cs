@@ -48,7 +48,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.chkActivate = new System.Windows.Forms.CheckBox();
-            this.chkRandom = new System.Windows.Forms.CheckBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,6 +60,9 @@
             this.mnuT7K1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuT7K2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuRandomize = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRepeat = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.grdCommands)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -271,19 +273,6 @@
             this.chkActivate.UseVisualStyleBackColor = true;
             this.chkActivate.CheckedChanged += new System.EventHandler(this.chkActivate_CheckedChanged);
             // 
-            // chkRandom
-            // 
-            this.chkRandom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkRandom.AutoSize = true;
-            this.chkRandom.Checked = true;
-            this.chkRandom.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkRandom.Location = new System.Drawing.Point(902, 330);
-            this.chkRandom.Name = "chkRandom";
-            this.chkRandom.Size = new System.Drawing.Size(111, 29);
-            this.chkRandom.TabIndex = 14;
-            this.chkRandom.Text = "Random";
-            this.chkRandom.UseVisualStyleBackColor = true;
-            // 
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -363,7 +352,10 @@
             // 
             this.configurationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuT7K1,
-            this.mnuT7K2});
+            this.mnuT7K2,
+            this.toolStripSeparator1,
+            this.mnuRandomize,
+            this.mnuRepeat});
             this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
             this.configurationToolStripMenuItem.Size = new System.Drawing.Size(92, 34);
             this.configurationToolStripMenuItem.Text = "Config";
@@ -371,7 +363,7 @@
             // mnuT7K1
             // 
             this.mnuT7K1.Name = "mnuT7K1";
-            this.mnuT7K1.Size = new System.Drawing.Size(335, 40);
+            this.mnuT7K1.Size = new System.Drawing.Size(422, 40);
             this.mnuT7K1.Text = "Tekken 7 - Keyboard 1";
             this.mnuT7K1.Click += new System.EventHandler(this.mnuT7K1_Click);
             // 
@@ -380,9 +372,30 @@
             this.mnuT7K2.Checked = true;
             this.mnuT7K2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuT7K2.Name = "mnuT7K2";
-            this.mnuT7K2.Size = new System.Drawing.Size(335, 40);
+            this.mnuT7K2.Size = new System.Drawing.Size(422, 40);
             this.mnuT7K2.Text = "Tekken 7 - Keyboard 2";
             this.mnuT7K2.Click += new System.EventHandler(this.mnuT7K2_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(419, 6);
+            // 
+            // mnuRandomize
+            // 
+            this.mnuRandomize.Checked = true;
+            this.mnuRandomize.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.mnuRandomize.Name = "mnuRandomize";
+            this.mnuRandomize.Size = new System.Drawing.Size(422, 40);
+            this.mnuRandomize.Text = "Auto execution - Randomize";
+            this.mnuRandomize.Click += new System.EventHandler(this.mnuRandomize_Click);
+            // 
+            // mnuRepeat
+            // 
+            this.mnuRepeat.Name = "mnuRepeat";
+            this.mnuRepeat.Size = new System.Drawing.Size(422, 40);
+            this.mnuRepeat.Text = "Auto execution - Repeat moves";
+            this.mnuRepeat.Click += new System.EventHandler(this.mnuRepeat_Click);
             // 
             // Form1
             // 
@@ -390,7 +403,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1079, 586);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.chkRandom);
             this.Controls.Add(this.chkActivate);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.label3);
@@ -440,7 +452,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colText;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFreq;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCmd;
-        private System.Windows.Forms.CheckBox chkRandom;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
@@ -453,6 +464,9 @@
         private System.Windows.Forms.ToolStripMenuItem mnuT7K1;
         private System.Windows.Forms.ToolStripMenuItem mnuT7K2;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem mnuRandomize;
+        private System.Windows.Forms.ToolStripMenuItem mnuRepeat;
     }
 }
 
