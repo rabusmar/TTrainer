@@ -12,6 +12,7 @@ namespace TTrainer
     {
         int line = 0;
         string filename = null;
+        bool updateLine = false, dirty = false;
         Thread thread = null;
         KeyboardShortcut hook1 = new KeyboardShortcut(), hook2 = new KeyboardShortcut();
         string term = "";
@@ -93,7 +94,9 @@ namespace TTrainer
                 txtCmd.Text,
             });
             grdCommands.Rows[line - 1].Selected = true;
+            //grdCommands.CurrentCell = grdCommands.Rows[line - 1].Cells[0];
             reindexGrid();
+            dirty = true;
         }
 
         private void grdCommands_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -103,11 +106,21 @@ namespace TTrainer
 
         private void grdCommands_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            line = e.RowIndex + 1;
-            var row = grdCommands.Rows[e.RowIndex];
+            selectRow(e.RowIndex);
+        }
+
+        private void selectRow(int index, bool setCurrentCell = false)
+        {
+            line = index + 1;
+            var row = grdCommands.Rows[index];
             txtCmd.Text = row.Cells["colCmd"].Value.ToString();
             txtFreq.Text = row.Cells["colFreq"].Value.ToString();
             txtDescription.Text = row.Cells["colText"].Value.ToString();
+            if (setCurrentCell)
+            {
+                grdCommands.CurrentCell = row.Cells[0];
+                grdCommands.Refresh();
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -121,6 +134,7 @@ namespace TTrainer
             row.Cells["colFreq"].Value = txtFreq.Text;
             row.Cells["colCmd"].Value = txtCmd.Text;
             grdCommands.Refresh();
+            dirty = true;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -144,9 +158,11 @@ namespace TTrainer
                 txtDescription.Text = row.Cells["colText"].Value.ToString();
                 txtFreq.Text = row.Cells["colFreq"].Value.ToString();
                 txtCmd.Text = row.Cells["colCmd"].Value.ToString();
-                row.Selected = true;
+                //row.Selected = true;
+                grdCommands.CurrentCell = row.Cells[0];
             }
             reindexGrid();
+            dirty = true;
         }
 
         private void reindexGrid()
@@ -159,6 +175,17 @@ namespace TTrainer
             grdCommands.Refresh();
         }
 
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            if (grdCommands.Rows.Count > 0 && MessageBox.Show("Are you sure?", "Confirm clear list", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                line = 0;
+                grdCommands.Rows.Clear();
+                grdCommands.Refresh();
+                dirty = false;
+            }
+        }
+
         private void btnUp_Click(object sender, EventArgs e)
         {
             if (line - 1 <= 0 || line > grdCommands.Rows.Count)
@@ -166,7 +193,8 @@ namespace TTrainer
                 return;
             }
             swapRows(line - 2, line - 1);
-            grdCommands.Rows[--line - 1].Selected = true;
+            //grdCommands.Rows[--line - 1].Selected = true;
+            grdCommands.CurrentCell = grdCommands.Rows[--line - 1].Cells[0];
             grdCommands.Refresh();
         }
 
@@ -177,7 +205,8 @@ namespace TTrainer
                 return;
             }
             swapRows(line - 1, line);
-            grdCommands.Rows[++line - 1].Selected = true;
+            //grdCommands.Rows[++line - 1].Selected = true;
+            grdCommands.CurrentCell = grdCommands.Rows[++line - 1].Cells[0];
             grdCommands.Refresh();
         }
 
@@ -195,12 +224,17 @@ namespace TTrainer
             tmp = row1.Cells["colCmd"].Value;
             row1.Cells["colCmd"].Value = row2.Cells["colCmd"].Value;
             row2.Cells["colCmd"].Value = tmp;
-            row1.Selected = row2.Selected = false;
-            grdCommands.Refresh();
+            //row1.Selected = row2.Selected = false;
+            dirty = true;
         }
 
         private void btnLoad_Click(object sender, EventArgs e)
         {
+            if (dirty && MessageBox.Show("Are you sure you want to discard unsaved changes?", "Confirm load file", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            {
+                return;
+            }
+
             using (var dialog = new OpenFileDialog())
             {
                 dialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
@@ -246,6 +280,7 @@ namespace TTrainer
                     }
 
                     grdCommands.Refresh();
+                    dirty = false;
                 }
             }
         }
@@ -278,6 +313,7 @@ namespace TTrainer
                             writer.WriteLine();
                         }
                     }
+                    dirty = false;
                 }
             }
         }
@@ -331,9 +367,10 @@ namespace TTrainer
         {
             if (chkActivate.Checked)
             {
+                if (grdCommands.Rows.Count == 0) return;
                 thread = new Thread(() =>
                 {
-                    var index = -1;
+                    var index = line > 0 ? line - 1 : 0;
                     var random = new Random();
                     List<int> list = null;
 
@@ -343,7 +380,7 @@ namespace TTrainer
                     {
                         while (true)
                         {
-                            // get next index
+                            // get next random index
                             if (mnuRandomize.Checked)
                             {
                                 if (list == null)
@@ -362,14 +399,6 @@ namespace TTrainer
                                 var r = random.Next(list.Count);
                                 index = list[r];
                             }
-                            else
-                            {
-                                index++;
-                                if (index >= grdCommands.Rows.Count)
-                                {
-                                    index = 0;
-                                }
-                            }
 
                             // execute 2 times to practice punish if repeat is enabled
                             for (var i = 0; i < (mnuRepeat.Checked ? 2 : 1); i++)
@@ -379,9 +408,20 @@ namespace TTrainer
                                 executeCmd("b", 1).Join();
                                 Thread.Sleep(1000);
 
+                                line = index + 1;
+
                                 // execute command
                                 var cmd = grdCommands.Rows[index < grdCommands.Rows.Count ? index : 0].Cells["colCmd"].Value.ToString();
                                 executeCmd(cmd, index + 1).Join();
+                            }
+
+                            if (mnuCycle.Checked)
+                            {
+                                index++;
+                                if (index >= grdCommands.Rows.Count)
+                                {
+                                    index = 0;
+                                }
                             }
                         }
                     }
@@ -391,6 +431,7 @@ namespace TTrainer
                     }
                 });
                 thread.Start();
+                updateLine = true;
             }
             else if (thread != null)
             {
@@ -407,7 +448,24 @@ namespace TTrainer
 
         private void mnuRandomize_Click(object sender, EventArgs e)
         {
-            mnuRandomize.Checked = !mnuRandomize.Checked;
+            mnuRandomize.Checked = true;
+            mnuCycle.Checked = false;
+            mnuSame.Checked = false;
+        }
+
+        private void mnuCycle_Click(object sender, EventArgs e)
+        {
+            mnuRandomize.Checked = false;
+            mnuCycle.Checked = true;
+            mnuSame.Checked = false;
+        }
+
+        private void mnuSame_Click(object sender, EventArgs e)
+        {
+            mnuRandomize.Checked = false;
+            mnuCycle.Checked = false;
+            mnuSame.Checked = true;
+
         }
 
         private void mnuRepeat_Click(object sender, EventArgs e)
@@ -419,6 +477,31 @@ namespace TTrainer
         {
             mnuT7K2.Checked = true;
             mnuT7K1.Checked = false;
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            if (updateLine)
+            {
+                var index = line > 0 ? line - 1 : 0;
+                var count = grdCommands.Rows.Count;
+                if (count > 0)
+                {
+                    selectRow(index < count ? index : 0, true);
+                }
+                if (thread == null)
+                {
+                    updateLine = false;
+                }
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (dirty && MessageBox.Show("Are you sure you want to discard unsaved changes?", "Confirm discard changes", MessageBoxButtons.YesNo) != DialogResult.Yes)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

@@ -160,7 +160,7 @@ f,,f(2),23
 #50 cd 1 leg breaker
 f,,d(3),f(2),1
 
-#50 cd ws1+2
+#50 cd ws 1+2
 f(2),,d(6),,,f(6) w(7) 12
 
 #50 cd 1+4 grab
@@ -184,10 +184,10 @@ f,,f,,f(2),34 w(65) 4
 #20 wr3+4 running explorer into spring
 f,,f,,f(2),34 w(65) 34
 
-#20 ws2,2
+#20 ws 2,2
 d(6)b(6) w(6) 2 w(8) 2
 
-#20 ws1+2
+#20 ws 1+2
 d(6)b(6) w(6) 12
 
 #50 FC df2

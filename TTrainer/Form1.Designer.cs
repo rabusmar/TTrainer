@@ -59,10 +59,14 @@
             this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuT7K1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuT7K2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuRandomize = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuCycle = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSame = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuRepeat = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdCommands)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -116,7 +120,7 @@
             // btnDown
             // 
             this.btnDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDown.Location = new System.Drawing.Point(888, 269);
+            this.btnDown.Location = new System.Drawing.Point(886, 316);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(144, 39);
             this.btnDown.TabIndex = 13;
@@ -152,7 +156,7 @@
             // btnUp
             // 
             this.btnUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUp.Location = new System.Drawing.Point(888, 218);
+            this.btnUp.Location = new System.Drawing.Point(886, 265);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(145, 45);
             this.btnUp.TabIndex = 12;
@@ -215,6 +219,7 @@
             this.colIndex.MinimumWidth = 9;
             this.colIndex.Name = "colIndex";
             this.colIndex.ReadOnly = true;
+            this.colIndex.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colIndex.Width = 50;
             // 
             // colText
@@ -223,6 +228,7 @@
             this.colText.MinimumWidth = 9;
             this.colText.Name = "colText";
             this.colText.ReadOnly = true;
+            this.colText.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colText.Width = 290;
             // 
             // colFreq
@@ -231,6 +237,7 @@
             this.colFreq.MinimumWidth = 9;
             this.colFreq.Name = "colFreq";
             this.colFreq.ReadOnly = true;
+            this.colFreq.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colFreq.Width = 175;
             // 
             // colCmd
@@ -239,6 +246,7 @@
             this.colCmd.MinimumWidth = 9;
             this.colCmd.Name = "colCmd";
             this.colCmd.ReadOnly = true;
+            this.colCmd.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colCmd.Visible = false;
             this.colCmd.Width = 175;
             // 
@@ -355,6 +363,9 @@
             this.mnuT7K2,
             this.toolStripSeparator1,
             this.mnuRandomize,
+            this.mnuCycle,
+            this.mnuSame,
+            this.toolStripSeparator2,
             this.mnuRepeat});
             this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
             this.configurationToolStripMenuItem.Size = new System.Drawing.Size(92, 34);
@@ -363,7 +374,7 @@
             // mnuT7K1
             // 
             this.mnuT7K1.Name = "mnuT7K1";
-            this.mnuT7K1.Size = new System.Drawing.Size(422, 40);
+            this.mnuT7K1.Size = new System.Drawing.Size(335, 40);
             this.mnuT7K1.Text = "Tekken 7 - Keyboard 1";
             this.mnuT7K1.Click += new System.EventHandler(this.mnuT7K1_Click);
             // 
@@ -372,36 +383,67 @@
             this.mnuT7K2.Checked = true;
             this.mnuT7K2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuT7K2.Name = "mnuT7K2";
-            this.mnuT7K2.Size = new System.Drawing.Size(422, 40);
+            this.mnuT7K2.Size = new System.Drawing.Size(335, 40);
             this.mnuT7K2.Text = "Tekken 7 - Keyboard 2";
             this.mnuT7K2.Click += new System.EventHandler(this.mnuT7K2_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(419, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(332, 6);
             // 
             // mnuRandomize
             // 
             this.mnuRandomize.Checked = true;
             this.mnuRandomize.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuRandomize.Name = "mnuRandomize";
-            this.mnuRandomize.Size = new System.Drawing.Size(422, 40);
-            this.mnuRandomize.Text = "Auto execution - Randomize";
+            this.mnuRandomize.Size = new System.Drawing.Size(335, 40);
+            this.mnuRandomize.Text = "Randomize moves";
             this.mnuRandomize.Click += new System.EventHandler(this.mnuRandomize_Click);
+            // 
+            // mnuCycle
+            // 
+            this.mnuCycle.Name = "mnuCycle";
+            this.mnuCycle.Size = new System.Drawing.Size(335, 40);
+            this.mnuCycle.Text = "Cycle through moves";
+            this.mnuCycle.Click += new System.EventHandler(this.mnuCycle_Click);
+            // 
+            // mnuSame
+            // 
+            this.mnuSame.Name = "mnuSame";
+            this.mnuSame.Size = new System.Drawing.Size(335, 40);
+            this.mnuSame.Text = "Repeat single move";
+            this.mnuSame.Click += new System.EventHandler(this.mnuSame_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(332, 6);
             // 
             // mnuRepeat
             // 
             this.mnuRepeat.Name = "mnuRepeat";
-            this.mnuRepeat.Size = new System.Drawing.Size(422, 40);
-            this.mnuRepeat.Text = "Auto execution - Repeat moves";
+            this.mnuRepeat.Size = new System.Drawing.Size(335, 40);
+            this.mnuRepeat.Text = "Repeat move twice";
             this.mnuRepeat.Click += new System.EventHandler(this.mnuRepeat_Click);
+            // 
+            // btnClear
+            // 
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.Location = new System.Drawing.Point(889, 218);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(143, 41);
+            this.btnClear.TabIndex = 101;
+            this.btnClear.Text = "Clear list";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1079, 586);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.chkActivate);
             this.Controls.Add(this.txtDescription);
@@ -423,6 +465,8 @@
             this.MinimumSize = new System.Drawing.Size(1100, 600);
             this.Name = "Form1";
             this.Text = "T7Trainer";
+            this.Activated += new System.EventHandler(this.Form1_Activated);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.grdCommands)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -448,10 +492,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.CheckBox chkActivate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colIndex;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colText;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colFreq;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCmd;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
@@ -467,6 +507,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem mnuRandomize;
         private System.Windows.Forms.ToolStripMenuItem mnuRepeat;
+        private System.Windows.Forms.ToolStripMenuItem mnuCycle;
+        private System.Windows.Forms.ToolStripMenuItem mnuSame;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colIndex;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colText;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFreq;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCmd;
     }
 }
 
