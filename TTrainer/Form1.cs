@@ -303,6 +303,7 @@ namespace TTrainer
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
+                    filename = dialog.FileName;
                     var stream = dialog.OpenFile();
                     using (var writer = new StreamWriter(stream))
                     {
