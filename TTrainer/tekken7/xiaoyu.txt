@@ -1,0 +1,375 @@
+#10 1,2,1
+1 w(5) 2 w(10) 1
+
+#10 1,d2 into RDS 4
+1 w(5) d2 w(20) 4
+
+#10 1,d2 into RDS d4
+1 w(5) d2 w(20) d4
+
+#10 1,d2 into cali roll
+1 w(5) d2 w(20) f34 w(5) 34
+
+#20 1,d2,1+2
+1 w(5) d2 w(10) 12
+
+#10 2,1 into RDS d1
+2 w(5) 1 w(20) d1
+
+#50 3
+3
+
+#10 4~3 into 4
+4,,3 w(25) 4
+
+#50 f2,1,4
+f2 w(5) 1 w(10) 4
+
+#10 f3,1 into RDS 4
+f3 w(5) 1 w(25) 4
+
+#10 f3,1 into RDS d4
+f3 w(5) 1 w(25) d4
+
+#10 f3,1 into cali roll
+f3 w(5) 1 w(25) f34 w(5) 34
+
+#20 f3,1,1+2
+f3 w(5) 1 w(10) 12
+
+#50 f1+2
+f12
+
+#20 f3+4,3+4
+f34 w(5) 34
+
+#10 df1 into RDS 4
+df1 w(15) 4
+
+#10 df1 into RDS d4
+df1 w(15) d4
+
+#10 df1 into rage drive
+df1 w(15) d3 w(5) 34 w(50) u
+
+#50 df2~1
+df2,,1
+
+#20 df3
+df3
+
+#10 d1
+d1
+
+#20 d1~
+d(30)1(30)
+
+#10 d3
+d3
+
+#40 d3,4
+d3 w(5) 4
+
+#20 db2
+db2 w(25) b(5)
+
+#20 db2 into parry
+db2 w(25) 14
+
+#10 db3
+db3
+
+#10 db4
+db4
+
+#10 b2 into RDS 4
+b2 w(20) 4
+
+#10 b2 into RDS d4
+b2 w(20) d4
+
+#10 b2 into rage drive
+b2 w(20) d3 w(5) 34 w(50) u
+
+#20 b2,2
+b2 w(5) 2 w(30) b(5)
+
+#20 b2,2 into parry
+b2 w(5) 2 w(30) 14
+
+#10 b3 into RDS 4
+b3 w(20) 4
+
+#10 b3 into RDS d4
+b3 w(20) d4
+
+#10 b3 into rage drive
+b3 w(20) d3 w(5) 34 w(50) u
+
+#20 b4
+b4
+
+#30 b4,4
+b4 w(5) 4
+
+#10 HYP 2+3
+db12 w(5) 23
+
+#10 HYP 2+3
+ub12 w(5) 23
+
+#10 HYP 2+3 cancel RDS 4
+db12 w(5) 23 w(5) b,,b w(30) 4
+
+#10 HYP 2+3 cancel RDS 4
+ub12 w(5) 23 w(5) b,,b w(30) 4
+
+#20 u4,1
+u4 w(10) 1
+
+#20 u4,1,2
+u4 w(10) 1 w(10) 2
+
+#20 u1+2,2
+u12 w(5) 2
+
+#20 u1+2,2,1
+u12 w(5) 2 w(15) 1
+
+#50 uf1
+uf1 w(35) u
+
+#50 uf3
+uf3
+
+#10 uf3+4
+uf34 w(35) b(5)
+
+#10 uf3+4,db into ws 4
+uf34 w(35) d(5)b(5) w(9) 4
+
+#5 uf3+4,SS into RDS 4
+uf34 w(35) u w(10) 4
+
+#5 uf3+4,SS into RDS 4
+uf34 w(35) d w(10) 4
+
+#10 uf3+4 into RDS 4
+uf34 w(35) 4
+
+#10 f,f1
+f,,f(2),1
+
+#20 f,f1,3
+f,,f(2),1 w(5) 3
+
+#20 f,f1,4
+f,,f(2),1 w(5) 4
+
+#20 f,f2,1
+f,,f(2),2 w(5) 1
+
+#10 f,f3
+f,,f(2),3 w(20) b(5)
+
+#10 f,f3,db into ws 4
+f,,f(2),3 w(20) d(5)b(5) w(9) 4
+
+#5 f,f3,SS into RDS 4
+f,,f(2),3 w(20) u w(10) 4
+
+#5 f,f3,SS into RDS 4
+f,,f(2),3 w(20) d w(10) 4
+
+#10 f,f3 into RDS 4
+f,,f(2),3 w(20) 4
+
+#10 ff1+2,1+2
+f,,f(2),12 w(13) 12
+
+#20 wr 3
+f,,f,,f(2),3
+
+#30 ws 1,4
+d(6)b(6) w(6) 1 w(5) 4
+
+#10 ws 2 into RDS 4
+d(6)b(6) w(6) 2 w(18) 4
+
+#10 ws 2 into RDS d4
+d(6)b(6) w(6) 2 w(18) d4
+
+#10 ws 2 into cali roll
+d(6)b(6) w(6) 2 w(18) f34 w(5) 34
+
+#10 FC d3
+d(10)b(10) w(10) d3
+
+#20 FC d3,2,1,4
+d(10)b(10) w(10) d3 w(5) 2 w(10) 1 w(10) 4
+
+#20 FC df2
+d(10)b(10) w(10) df2
+
+#30 FC df2,1
+d(10)b(10) w(10) df2 w(5) 1
+
+#10 FC df4
+d(10)b(10) w(10) df4 w(26) u
+
+#10 FC df4,4
+d(10)b(10) w(10) df4 w(10) 4
+
+#50 SS 3
+u,,3
+
+#50 SS 3
+d,,3
+
+#10 SS 3,b cancel RDS 4
+u,,3 w(10) b(5) w(10) 4
+
+#10 SS 3,b cancel RDS 4
+d,,3 w(10) b(5) w(10) 4
+
+#10 SS 3,b cancel RDS d4
+u,,3 w(10) b(5) w(10) d4
+
+#10 SS 3,b cancel RDS d4
+d,,3 w(10) b(5) w(10) d4
+
+#10 SS 3,b cancel rage drive
+u,,3 w(10) b(5) w(10) d3 w(5) 34 w(50) u
+
+#10 SS 3,b cancel rage drive
+d,,3 w(10) b(5) w(10) d3 w(5) 34 w(50) u
+
+#50 RDS 1,4
+b34 w(10) 1 w(5) 4
+
+#20 RDS 2,1,4
+b34 w(10) 2 w(5) 1 w(10) 4
+
+#20 RDS 2,2,1
+b34 w(10) 2 w(5) 2 w(10) 1
+
+#50 RDS 3
+b34 w(10) 3
+
+#20 RDS 4
+b34 w(10) 4
+
+#20 RDS 1+2,1+2
+b34 w(10) 12 w(5) 12
+
+#20 RDS f3+4,3+4 cali roll
+b34 w(10) f34 w(5) 34
+
+#10 RDS d3
+b34 w(10) d3
+
+#40 RDS d3,4
+b34 w(10) d3 w(5) 4
+
+#100 RDS d4
+b34 w(10) d4
+
+#10 RDS db4
+b34 w(10) db4
+
+#50 RDS uf1
+b34 w(10) uf1 w(35) u
+
+#50 RDS f,f1+3 grab
+b34 w(10) f,,f(2),13
+
+#50 RDS f,f2+4 grab
+b34 w(10) f,,f(2),24
+
+#20 AOP 1,2
+d12 w(5) 1 w(5) 2
+
+#10 AOP 2
+d12 w(5) 2
+
+#20 AOP 2,1
+d12 w(5) 2 w(5) 1
+
+#100 AOP 3
+d12 w(5) 3
+
+#50 AOP 4~3
+d12 w(5) 4 w(5) 3
+
+#50 AOP 1+3 grab
+d12 w(5) 13
+
+#10 AOP 1+3,b cancel ws 4
+d12 w(5) 13 w(15) b(5) w(10) 4
+
+#50 AOP 2+4 grab
+d12 w(5) 24
+
+#10 AOP 2+4,b cancel ws 4
+d12 w(5) 24 w(15) b(5) w(10) 4
+
+#10 AOP f4
+d12 w(5) f4 w(28) u
+
+#20 AOP f4,4
+d12 w(5) f4 w(5) 4
+
+#10 AOP d1
+d12 w(5) d1
+
+#40 AOP uf3
+d12 w(5) uf3
+
+#20 AOP uf3,1
+d12 w(5) uf3 w(5) 1 w(35) u
+
+#20 AOP uf3,3
+d12 w(5) uf3 w(5) 3
+
+#20 AOP uf3,4
+d12 w(5) uf3 w(5) 4
+
+#20 AOP uf4,4
+d12 w(5) uf4 w(10) 4
+
+#50 AOP uf,n+3
+d12 w(5) u(10)f(10) w(10) 3 w(5) d12 w(20) u
+
+#50 AOP uf,(landing)+3
+d12 w(5) u(10)f(10) w(15) 3
+
+#10 10 hit string 1
+u4 w(10) 1 w(10) 2 w(10) 12 w(15) 1 w(15) 3 w(10) 4 w(15) 4 w(17) 4 w(18) 1
+
+#10 10 hit string 2
+u4 w(10) 1 w(10) 2 w(10) 4 w(10) 4 w(15) 2 w(17) 12 w(15) 1 w(15) 4 w(22) 2
+
+#50 1+3 grab
+13
+
+#50 f1+3 grab
+f13
+
+#20 2+4 grab
+24
+
+#50 f2+4 grab
+f24
+
+#50 f2+3 grab
+f23
+
+#100 df1+2 grab
+df12
+
+#50 df2+4 grab
+df24
+
+#50 b1+4 parry
+b14 b(50)
+
