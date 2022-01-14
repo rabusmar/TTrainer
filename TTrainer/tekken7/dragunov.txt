@@ -124,6 +124,12 @@ d(2),b(2),2
 #20 wr 2
 f,,f,,f(2),2
 
+#20 wr 1+2 rage drive
+f,,f,,f(2),12 w(60) df2
+
+#20 wr 1+2 rage drive tackle
+f,,f,,f(2),12 w(20) db12
+
 #25 ws 1,2
 d(6)b(6) w(6) 1 w(5) 2
 
@@ -135,12 +141,6 @@ d(6)b(6) w(6) 2
 
 #50 ws 1+2
 d(6)b(6) w(6) 12
-
-#20 wr 1+2 rage drive
-f,,f,,f(2),12 w(60) df2
-
-#20 wr 1+2 rage drive tackle
-f,,f,,f(2),12 w(20) db12
 
 #10 SS 2,3
 u,,2 w(10) 3

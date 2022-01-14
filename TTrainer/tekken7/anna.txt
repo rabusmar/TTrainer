@@ -224,9 +224,6 @@ d(2),f(2),,1
 d(2),f(2),,2 w(10) 1
 
 #20 qcf 2,1 cancel into ch
-d(2),f(2),,2 w(10) 1 w(20) b(5) 
-
-#20 qcf 2,1 cancel into ch
 d(2),f(2),,2 w(10) 1 w(20) b(5) w(15) 3
 
 #20 qcf 3,2

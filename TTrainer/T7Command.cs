@@ -1,6 +1,7 @@
 ﻿using InputManager;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -116,10 +117,19 @@ namespace TTrainer
 
         private void SleepUpTo(int maxFrames)
         {
+            var watch = new Stopwatch();
+
             // wait up to 600 frames (10 seconds) max
             for (var i = 0; i < 600 && (maxFrames == -1 || i < maxFrames); i++)
             {
-                Thread.Sleep(TimeSpan.FromTicks(166_667)); // 1 frame = 16.6667 msec (60 fps)
+                // Thread.Sleep(TimeSpan.FromTicks(166_667)); // 1 frame ~= 16.6667 msec (60 fps)
+                // wait for 1 frame, can't use Thread.Sleep because it's not exact
+                watch.Restart();
+                while (true)
+                {
+                    if (watch.ElapsedTicks > 166_666) break;
+                }
+                watch.Stop();
 
                 // release pressed keys
                 var count = pressed.Count;
@@ -144,7 +154,7 @@ namespace TTrainer
             }
         }
 
-        public static Thread ExecuteCmd(string _command, T7Config _config, bool _p1, int _line = 1)
+        public static Thread ExecuteCmd(string _command, T7Config _config, bool _p1, int _line)
         {
             var thread = new Thread(() =>
             {
