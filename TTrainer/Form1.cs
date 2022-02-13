@@ -88,13 +88,14 @@ namespace TTrainer
                 line++;
             }
             grdCommands.Rows.Insert(line - 1, new object[] {
+                true,
                 $"{line}",
                 txtDescription.Text,
                 int.TryParse(txtFreq.Text, out var f) ? f.ToString() : "0",
                 txtCmd.Text,
             });
             grdCommands.Rows[line - 1].Selected = true;
-            //grdCommands.CurrentCell = grdCommands.Rows[line - 1].Cells[0];
+            //grdCommands.CurrentCell = grdCommands.Rows[line - 1].Cells[1];
             reindexGrid();
             dirty = true;
         }
@@ -106,7 +107,36 @@ namespace TTrainer
 
         private void grdCommands_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            selectRow(e.RowIndex);
+            if (e.RowIndex == -1)
+            {
+                var allchecked = true;
+                foreach (DataGridViewRow row in grdCommands.Rows)
+                {
+                    if (!(bool) row.Cells[0].Value)
+                    {
+                        allchecked = false;
+                        break;
+                    }
+                }
+                foreach (DataGridViewRow row in grdCommands.Rows)
+                {
+                    row.Cells[0].Value = !allchecked;
+                    
+                }
+                grdCommands.Refresh();
+            }
+            else
+            {
+                selectRow(e.RowIndex);
+            }
+        }
+
+        private void grdCommands_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                grdCommands.EndEdit();
+            }
         }
 
         private void selectRow(int index, bool setCurrentCell = false)
@@ -118,7 +148,7 @@ namespace TTrainer
             txtDescription.Text = row.Cells["colText"].Value.ToString();
             if (setCurrentCell)
             {
-                grdCommands.CurrentCell = row.Cells[0];
+                grdCommands.CurrentCell = row.Cells[1];
                 grdCommands.Refresh();
             }
         }
@@ -159,7 +189,7 @@ namespace TTrainer
                 txtFreq.Text = row.Cells["colFreq"].Value.ToString();
                 txtCmd.Text = row.Cells["colCmd"].Value.ToString();
                 //row.Selected = true;
-                grdCommands.CurrentCell = row.Cells[0];
+                grdCommands.CurrentCell = row.Cells[1];
             }
             reindexGrid();
             dirty = true;
@@ -194,7 +224,7 @@ namespace TTrainer
             }
             swapRows(line - 2, line - 1);
             //grdCommands.Rows[--line - 1].Selected = true;
-            grdCommands.CurrentCell = grdCommands.Rows[--line - 1].Cells[0];
+            grdCommands.CurrentCell = grdCommands.Rows[--line - 1].Cells[1];
             grdCommands.Refresh();
         }
 
@@ -206,7 +236,7 @@ namespace TTrainer
             }
             swapRows(line - 1, line);
             //grdCommands.Rows[++line - 1].Selected = true;
-            grdCommands.CurrentCell = grdCommands.Rows[++line - 1].Cells[0];
+            grdCommands.CurrentCell = grdCommands.Rows[++line - 1].Cells[1];
             grdCommands.Refresh();
         }
 
@@ -215,6 +245,9 @@ namespace TTrainer
             object tmp;
             var row1 = grdCommands.Rows[i];
             var row2 = grdCommands.Rows[j];
+            tmp = row1.Cells["colFlag"].Value;
+            row1.Cells["colFlag"].Value = row2.Cells["colFlag"].Value;
+            row2.Cells["colFlag"].Value = tmp;
             tmp = row1.Cells["colText"].Value;
             row1.Cells["colText"].Value = row2.Cells["colText"].Value;
             row2.Cells["colText"].Value = tmp;
@@ -270,7 +303,7 @@ namespace TTrainer
                                 desc = match.Groups[2].Value;
                                 cmd = reader.ReadLine();
 
-                                grdCommands.Rows.Add(new object[] { $"{index++}", desc, freq, cmd });
+                                grdCommands.Rows.Add(new object[] { true, $"{index++}", desc, freq, cmd });
                             }
                             else if (!empty.IsMatch(str))
                             {
@@ -339,7 +372,7 @@ namespace TTrainer
                         txtCmd.Text = row.Cells["colCmd"].Value.ToString();
                         txtFreq.Text = row.Cells["colFreq"].Value.ToString();
                         txtDescription.Text = text;
-                        grdCommands.CurrentCell = row.Cells[0];
+                        grdCommands.CurrentCell = row.Cells[1];
                         grdCommands.Refresh();
                         return;
                     }
@@ -374,8 +407,17 @@ namespace TTrainer
                     var index = line > 0 ? line - 1 : 0;
                     var random = new Random();
                     List<int> list = null;
+                    List<DataGridViewRow> rows = new List<DataGridViewRow>();
 
                     if (!activateApp()) return;
+
+                    foreach (DataGridViewRow row in grdCommands.Rows)
+                    {
+                        if ((bool) row.Cells[0].Value)
+                        {
+                            rows.Add(row);
+                        }
+                    }
 
                     try
                     {
@@ -387,10 +429,9 @@ namespace TTrainer
                                 if (list == null)
                                 {
                                     list = new List<int>();
-                                    var n = grdCommands.Rows.Count;
-                                    for (var i = 0; i < n; i++)
+                                    for (var i = 0; i < rows.Count; i++)
                                     {
-                                        var freq = int.TryParse(grdCommands.Rows[i].Cells["colFreq"].Value.ToString(), out int f) ? f : 0;
+                                        var freq = int.TryParse(rows[i].Cells["colFreq"].Value.ToString(), out int f) ? f : 0;
                                         for (var j = 0; j < freq; j++)
                                         {
                                             list.Add(i);
@@ -409,17 +450,24 @@ namespace TTrainer
                                 executeCmd("b", 1).Join();
                                 Thread.Sleep(1000);
 
-                                line = index + 1;
+                                var row = rows[index < rows.Count ? index : 0];
+                                for (var j = 0; j < grdCommands.Rows.Count; j++)
+                                {
+                                    if (row == grdCommands.Rows[j])
+                                    {
+                                        line = j + 1;
+                                        break;
+                                    }
+                                }
 
                                 // execute command
-                                var cmd = grdCommands.Rows[index < grdCommands.Rows.Count ? index : 0].Cells["colCmd"].Value.ToString();
-                                executeCmd(cmd, index + 1).Join();
+                                executeCmd(row.Cells["colCmd"].Value.ToString(), index + 1).Join();
                             }
 
                             if (mnuCycle.Checked)
                             {
                                 index++;
-                                if (index >= grdCommands.Rows.Count)
+                                if (index >= rows.Count)
                                 {
                                     index = 0;
                                 }

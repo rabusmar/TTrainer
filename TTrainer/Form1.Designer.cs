@@ -41,10 +41,6 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.grdCommands = new System.Windows.Forms.DataGridView();
-            this.colIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colText = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFreq = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCmd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.chkActivate = new System.Windows.Forms.CheckBox();
@@ -67,6 +63,11 @@
             this.mnuRepeat = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnClear = new System.Windows.Forms.Button();
+            this.colFlag = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFreq = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCmd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdCommands)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -196,6 +197,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdCommands.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdCommands.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colFlag,
             this.colIndex,
             this.colText,
             this.colFreq,
@@ -203,52 +205,15 @@
             this.grdCommands.Location = new System.Drawing.Point(43, 171);
             this.grdCommands.MultiSelect = false;
             this.grdCommands.Name = "grdCommands";
-            this.grdCommands.ReadOnly = true;
             this.grdCommands.RowHeadersVisible = false;
             this.grdCommands.RowHeadersWidth = 72;
             this.grdCommands.RowTemplate.Height = 31;
             this.grdCommands.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grdCommands.Size = new System.Drawing.Size(819, 373);
             this.grdCommands.TabIndex = 99;
+            this.grdCommands.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdCommands_CellContentClick);
             this.grdCommands.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdCommands_CellDoubleClick);
             this.grdCommands.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdCommands_RowEnter);
-            // 
-            // colIndex
-            // 
-            this.colIndex.HeaderText = "Line";
-            this.colIndex.MinimumWidth = 9;
-            this.colIndex.Name = "colIndex";
-            this.colIndex.ReadOnly = true;
-            this.colIndex.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colIndex.Width = 50;
-            // 
-            // colText
-            // 
-            this.colText.HeaderText = "Description";
-            this.colText.MinimumWidth = 9;
-            this.colText.Name = "colText";
-            this.colText.ReadOnly = true;
-            this.colText.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colText.Width = 290;
-            // 
-            // colFreq
-            // 
-            this.colFreq.HeaderText = "Frequency";
-            this.colFreq.MinimumWidth = 9;
-            this.colFreq.Name = "colFreq";
-            this.colFreq.ReadOnly = true;
-            this.colFreq.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colFreq.Width = 175;
-            // 
-            // colCmd
-            // 
-            this.colCmd.HeaderText = "Command";
-            this.colCmd.MinimumWidth = 9;
-            this.colCmd.Name = "colCmd";
-            this.colCmd.ReadOnly = true;
-            this.colCmd.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colCmd.Visible = false;
-            this.colCmd.Width = 175;
             // 
             // label3
             // 
@@ -438,6 +403,50 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // colFlag
+            // 
+            this.colFlag.HeaderText = "";
+            this.colFlag.MinimumWidth = 9;
+            this.colFlag.Name = "colFlag";
+            this.colFlag.Width = 30;
+            // 
+            // colIndex
+            // 
+            this.colIndex.HeaderText = "Line";
+            this.colIndex.MinimumWidth = 9;
+            this.colIndex.Name = "colIndex";
+            this.colIndex.ReadOnly = true;
+            this.colIndex.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colIndex.Width = 50;
+            // 
+            // colText
+            // 
+            this.colText.HeaderText = "Description";
+            this.colText.MinimumWidth = 9;
+            this.colText.Name = "colText";
+            this.colText.ReadOnly = true;
+            this.colText.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colText.Width = 290;
+            // 
+            // colFreq
+            // 
+            this.colFreq.HeaderText = "Frequency";
+            this.colFreq.MinimumWidth = 9;
+            this.colFreq.Name = "colFreq";
+            this.colFreq.ReadOnly = true;
+            this.colFreq.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colFreq.Width = 175;
+            // 
+            // colCmd
+            // 
+            this.colCmd.HeaderText = "Command";
+            this.colCmd.MinimumWidth = 9;
+            this.colCmd.Name = "colCmd";
+            this.colCmd.ReadOnly = true;
+            this.colCmd.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colCmd.Visible = false;
+            this.colCmd.Width = 175;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
@@ -511,6 +520,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuSame;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colFlag;
         private System.Windows.Forms.DataGridViewTextBoxColumn colIndex;
         private System.Windows.Forms.DataGridViewTextBoxColumn colText;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFreq;
