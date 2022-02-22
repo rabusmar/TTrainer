@@ -61,7 +61,7 @@ df3
 #10 d1
 d1
 
-#20 d1~
+#20 d1*
 d(50)1(50) w(65) u
 
 #10 d3
@@ -148,14 +148,14 @@ uf34 w(65) b(5)
 #10 uf3+4,db into ws 4
 uf34 w(65) d(8)b(8) w(15) 4
 
-#5 uf3+4,SS into RDS 4
-uf34 w(65) u w(15) 4
-
-#5 uf3+4,SS into RDS 4
-uf34 w(65) d w(15) 4
+#10 uf3+4,SS into RDS 4
+uf34 w(65) s w(15) 4
 
 #10 uf3+4 into RDS 4
 uf34 w(65) 4
+
+#10 uf3+4 into cali roll
+uf34 w(65) f34 w(10) 34
 
 #10 f,f1
 f,,f(2),1
@@ -175,14 +175,14 @@ f,,f(2),3 w(37) b(5)
 #10 f,f3,db into ws 4
 f,,f(2),3 w(37) d(8)b(8) w(15) 4
 
-#5 f,f3,SS into RDS 4
-f,,f(2),3 w(37) u w(15) 4
-
-#5 f,f3,SS into RDS 4
-f,,f(2),3 w(37) d w(15) 4
+#10 f,f3,SS into RDS 4
+f,,f(2),3 w(37) s w(15) 4
 
 #10 f,f3 into RDS 4
 f,,f(2),3 w(37) 4
+
+#10 f,f3 into cali roll
+f,,f(2),3 w(37) f34 w(10) 34
 
 #10 ff1+2,1+2
 f,,f(2),12 w(23) 12
@@ -220,29 +220,17 @@ d(11)b(11) w(11) df4 w(47) u
 #10 FC df4,4
 d(11)b(11) w(11) df4 w(15) 4
 
-#50 SS 3
-u,,3
+#100 SS 3
+s,,3
 
-#50 SS 3
-d,,3
+#20 SS 3,b cancel RDS 4
+s,,3 w(20) b(5) w(15) 4
 
-#10 SS 3,b cancel RDS 4
-u,,3 w(20) b(5) w(15) 4
+#20 SS 3,b cancel RDS d4
+s,,3 w(20) b(5) w(15) d4
 
-#10 SS 3,b cancel RDS 4
-d,,3 w(20) b(5) w(15) 4
-
-#10 SS 3,b cancel RDS d4
-u,,3 w(20) b(5) w(15) d4
-
-#10 SS 3,b cancel RDS d4
-d,,3 w(20) b(5) w(15) d4
-
-#10 SS 3,b cancel rage drive
-u,,3 w(20) b(5) w(15) d3 w(10) 34 w(90) u
-
-#10 SS 3,b cancel rage drive
-d,,3 w(20) b(5) w(15) d3 w(10) 34 w(90) u
+#20 SS 3,b cancel rage drive
+s,,3 w(20) b(5) w(15) d3 w(10) 34 w(90) u
 
 #50 RDS 1,4
 b34 w(20) 1 w(8) 4

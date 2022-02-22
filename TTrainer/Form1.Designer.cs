@@ -41,6 +41,11 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.grdCommands = new System.Windows.Forms.DataGridView();
+            this.colFlag = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFreq = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCmd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.chkActivate = new System.Windows.Forms.CheckBox();
@@ -63,11 +68,6 @@
             this.mnuRepeat = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnClear = new System.Windows.Forms.Button();
-            this.colFlag = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colIndex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colText = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFreq = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCmd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdCommands)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -215,6 +215,50 @@
             this.grdCommands.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdCommands_CellDoubleClick);
             this.grdCommands.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdCommands_RowEnter);
             // 
+            // colFlag
+            // 
+            this.colFlag.HeaderText = "";
+            this.colFlag.MinimumWidth = 9;
+            this.colFlag.Name = "colFlag";
+            this.colFlag.Width = 30;
+            // 
+            // colIndex
+            // 
+            this.colIndex.HeaderText = "Line";
+            this.colIndex.MinimumWidth = 9;
+            this.colIndex.Name = "colIndex";
+            this.colIndex.ReadOnly = true;
+            this.colIndex.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colIndex.Width = 50;
+            // 
+            // colText
+            // 
+            this.colText.HeaderText = "Description";
+            this.colText.MinimumWidth = 9;
+            this.colText.Name = "colText";
+            this.colText.ReadOnly = true;
+            this.colText.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colText.Width = 290;
+            // 
+            // colFreq
+            // 
+            this.colFreq.HeaderText = "Frequency";
+            this.colFreq.MinimumWidth = 9;
+            this.colFreq.Name = "colFreq";
+            this.colFreq.ReadOnly = true;
+            this.colFreq.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colFreq.Width = 175;
+            // 
+            // colCmd
+            // 
+            this.colCmd.HeaderText = "Command";
+            this.colCmd.MinimumWidth = 9;
+            this.colCmd.Name = "colCmd";
+            this.colCmd.ReadOnly = true;
+            this.colCmd.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colCmd.Visible = false;
+            this.colCmd.Width = 175;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -259,7 +303,6 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(28, 28);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -387,6 +430,8 @@
             // 
             // mnuRepeat
             // 
+            this.mnuRepeat.Checked = true;
+            this.mnuRepeat.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mnuRepeat.Name = "mnuRepeat";
             this.mnuRepeat.Size = new System.Drawing.Size(335, 40);
             this.mnuRepeat.Text = "Repeat move twice";
@@ -402,50 +447,6 @@
             this.btnClear.Text = "Clear list";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
-            // 
-            // colFlag
-            // 
-            this.colFlag.HeaderText = "";
-            this.colFlag.MinimumWidth = 9;
-            this.colFlag.Name = "colFlag";
-            this.colFlag.Width = 30;
-            // 
-            // colIndex
-            // 
-            this.colIndex.HeaderText = "Line";
-            this.colIndex.MinimumWidth = 9;
-            this.colIndex.Name = "colIndex";
-            this.colIndex.ReadOnly = true;
-            this.colIndex.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colIndex.Width = 50;
-            // 
-            // colText
-            // 
-            this.colText.HeaderText = "Description";
-            this.colText.MinimumWidth = 9;
-            this.colText.Name = "colText";
-            this.colText.ReadOnly = true;
-            this.colText.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colText.Width = 290;
-            // 
-            // colFreq
-            // 
-            this.colFreq.HeaderText = "Frequency";
-            this.colFreq.MinimumWidth = 9;
-            this.colFreq.Name = "colFreq";
-            this.colFreq.ReadOnly = true;
-            this.colFreq.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colFreq.Width = 175;
-            // 
-            // colCmd
-            // 
-            this.colCmd.HeaderText = "Command";
-            this.colCmd.MinimumWidth = 9;
-            this.colCmd.Name = "colCmd";
-            this.colCmd.ReadOnly = true;
-            this.colCmd.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colCmd.Visible = false;
-            this.colCmd.Width = 175;
             // 
             // Form1
             // 

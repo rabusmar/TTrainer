@@ -47,6 +47,11 @@ namespace TTrainer
                     case 'U':
                         key = config == T7Config.K1 ? Keys.W : Keys.Up;
                         break;
+                    case 's':
+                    case 'S':
+                        key = new Random().Next(2) == 0 ? (config == T7Config.K1 ? Keys.S : Keys.Down) :
+                            (config == T7Config.K1 ? Keys.W : Keys.Up);
+                        break;
                     case '1':
                         key = config == T7Config.K1 ? Keys.U : Keys.NumPad7;
                         break;
