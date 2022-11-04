@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -401,11 +400,103 @@ namespace TTrainer
             }
         }
 
+        private void startThread()
+        {
+            if (thread != null)
+            {
+                thread.Abort();
+            }
+
+            thread = new Thread(() =>
+            {
+                var index = line > 0 ? line - 1 : 0;
+                var random = new Random();
+                List<int> list = null;
+                List<DataGridViewRow> rows = new List<DataGridViewRow>();
+
+                if (!activateApp()) return;
+
+                foreach (DataGridViewRow row in grdCommands.Rows)
+                {
+                    if ((bool)row.Cells[0].Value)
+                    {
+                        rows.Add(row);
+                    }
+                }
+
+                try
+                {
+                    while (true)
+                    {
+                        // get next random index
+                        if (mnuRandomize.Checked)
+                        {
+                            if (list == null)
+                            {
+                                list = new List<int>();
+                                for (var i = 0; i < rows.Count; i++)
+                                {
+                                    var freq = int.TryParse(rows[i].Cells["colFreq"].Value.ToString(), out int f) ? f : 0;
+                                    for (var j = 0; j < freq; j++)
+                                    {
+                                        list.Add(i);
+                                    }
+                                }
+                            }
+                            var r = random.Next(list.Count);
+                            index = list[r];
+                        }
+
+                        // execute 2 times to practice punish if repeat is enabled
+                        for (var i = 0; i < (mnuRepeat.Checked ? 2 : 1); i++)
+                        {
+                            // try to clean previous state as much as possible
+                            Thread.Sleep(2000);
+                            executeCmd("b", 1).Join();
+                            Thread.Sleep(1000);
+
+                            var row = rows[index < rows.Count ? index : 0];
+                            for (var j = 0; j < grdCommands.Rows.Count; j++)
+                            {
+                                if (row == grdCommands.Rows[j])
+                                {
+                                    line = j + 1;
+                                    break;
+                                }
+                            }
+
+                            // execute command
+                            executeCmd(row.Cells["colCmd"].Value.ToString(), index + 1).Join();
+                        }
+
+                        if (mnuCycle.Checked)
+                        {
+                            index++;
+                            if (index >= rows.Count)
+                            {
+                                index = 0;
+                            }
+                        }
+                    }
+                }
+                catch (ThreadAbortException)
+                {
+                    return;
+                }
+            });
+            thread.Start();
+            updateLine = true;
+        }
+
         private void hook3_KeyPressed(object sender, KeyPressedEventArgs e)
         {
             if (grdCommands.Rows.Count > 0)
             {
                 selectRow(line + 1 > grdCommands.Rows.Count ? 0 : line, true);
+                if (chkActivate.Checked)
+                {
+                    startThread();
+                }
             }
         }
 
@@ -422,85 +513,7 @@ namespace TTrainer
             if (chkActivate.Checked)
             {
                 if (grdCommands.Rows.Count == 0) return;
-                thread = new Thread(() =>
-                {
-                    var index = line > 0 ? line - 1 : 0;
-                    var random = new Random();
-                    List<int> list = null;
-                    List<DataGridViewRow> rows = new List<DataGridViewRow>();
-
-                    if (!activateApp()) return;
-
-                    foreach (DataGridViewRow row in grdCommands.Rows)
-                    {
-                        if ((bool) row.Cells[0].Value)
-                        {
-                            rows.Add(row);
-                        }
-                    }
-
-                    try
-                    {
-                        while (true)
-                        {
-                            // get next random index
-                            if (mnuRandomize.Checked)
-                            {
-                                if (list == null)
-                                {
-                                    list = new List<int>();
-                                    for (var i = 0; i < rows.Count; i++)
-                                    {
-                                        var freq = int.TryParse(rows[i].Cells["colFreq"].Value.ToString(), out int f) ? f : 0;
-                                        for (var j = 0; j < freq; j++)
-                                        {
-                                            list.Add(i);
-                                        }
-                                    }
-                                }
-                                var r = random.Next(list.Count);
-                                index = list[r];
-                            }
-
-                            // execute 2 times to practice punish if repeat is enabled
-                            for (var i = 0; i < (mnuRepeat.Checked ? 2 : 1); i++)
-                            {
-                                // try to clean previous state as much as possible
-                                Thread.Sleep(2000);
-                                executeCmd("b", 1).Join();
-                                Thread.Sleep(1000);
-
-                                var row = rows[index < rows.Count ? index : 0];
-                                for (var j = 0; j < grdCommands.Rows.Count; j++)
-                                {
-                                    if (row == grdCommands.Rows[j])
-                                    {
-                                        line = j + 1;
-                                        break;
-                                    }
-                                }
-
-                                // execute command
-                                executeCmd(row.Cells["colCmd"].Value.ToString(), index + 1).Join();
-                            }
-
-                            if (mnuCycle.Checked)
-                            {
-                                index++;
-                                if (index >= rows.Count)
-                                {
-                                    index = 0;
-                                }
-                            }
-                        }
-                    }
-                    catch (ThreadAbortException)
-                    {
-                        return;
-                    }
-                });
-                thread.Start();
-                updateLine = true;
+                startThread();
             }
             else if (thread != null)
             {
