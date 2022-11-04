@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
@@ -14,22 +15,25 @@ namespace TTrainer
         string filename = null;
         bool updateLine = false, dirty = false;
         Thread thread = null;
-        KeyboardShortcut hook1 = new KeyboardShortcut(), hook2 = new KeyboardShortcut();
+        KeyboardShortcut hook1 = new KeyboardShortcut(), hook2 = new KeyboardShortcut(),
+            hook3 = new KeyboardShortcut(), hook4 = new KeyboardShortcut();
         string term = "";
 
         public Form1()
         {
             InitializeComponent();
 
-            // register the event that is fired after the key press.
             hook1.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook1_KeyPressed);
-            // register the control + shift + e combination as hot key.
             hook1.RegisterHotKey(ModKeys.Control | ModKeys.Shift, Keys.E);
 
-            // register the event that is fired after the key press.
             hook2.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook2_KeyPressed);
-            // register the control + shift + s combination as hot key.
             hook2.RegisterHotKey(ModKeys.Control | ModKeys.Shift, Keys.S);
+
+            hook3.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook3_KeyPressed);
+            hook3.RegisterHotKey(ModKeys.Control | ModKeys.Shift, Keys.Z);
+
+            hook4.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook4_KeyPressed);
+            hook4.RegisterHotKey(ModKeys.Control | ModKeys.Shift | ModKeys.Alt, Keys.Z);
         }
 
         private void btnExec_Click(object sender, EventArgs e)
@@ -394,6 +398,22 @@ namespace TTrainer
             else
             {
                 rbP1.Checked = true;
+            }
+        }
+
+        private void hook3_KeyPressed(object sender, KeyPressedEventArgs e)
+        {
+            if (grdCommands.Rows.Count > 0)
+            {
+                selectRow(line + 1 > grdCommands.Rows.Count ? 0 : line, true);
+            }
+        }
+
+        private void hook4_KeyPressed(object sender, KeyPressedEventArgs e)
+        {
+            if (grdCommands.Rows.Count > 0)
+            {
+                selectRow(line - 1 <= 0 ? grdCommands.Rows.Count - 1 : line - 2, true);
             }
         }
 

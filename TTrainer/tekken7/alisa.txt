@@ -28,54 +28,6 @@
 #20 f2,1
 f2 w(5) 1 w(90) db
 
-#20 f2 cancel DES 1
-f2 w(5) 12 w(35) 1 w(80) db
-
-#20 f2 cancel DES 2
-f2 w(5) 12 w(35) 2 w(70) db
-
-#20 f2 cancel DES 1+2
-f2 w(5) 12 w(35) 12 w(80) db
-
-#20 f2 cancel DES f1
-f2 w(5) 12 w(35) f1 w(60) db
-
-#20 f2 cancel DES f1+2
-f2 w(5) 12 w(35) f12 w(80) db
-
-#20 f2 cancel DES f1+2,1+2
-f2 w(5) 12 w(35) f12 w(40) 12 w(110) db
-
-#20 f2 cancel DES d1
-f2 w(5) 12 w(35) d1 w(90) db
-
-#20 f2 cancel DES d2
-f2 w(5) 12 w(35) d2 w(120) db
-
-#20 f2 cancel DES b2,1
-f2 w(5) 12 w(35) b2 w(20) 1 w(80) db
-
-#10 f2 cancel DES u3+4,1
-f2 w(5) 12 w(35) u34 w(10) 1 w(100) db
-
-#10 f2 cancel DES d3+4,1
-f2 w(5) 12 w(35) d34 w(10) 1 w(100) db
-
-#20 f2 cancel DES df1+2 power crush
-f2 w(5) 12 w(35) df12 df12 w(70) db
-
-#20 f2 cancel DBT 1
-f2 w(5) 12 w(35)  f34 w(10) 1 w(90) db
-
-#20 f2 cancel DBT 2
-f2 w(5) 12 w(35)  f34 w(10) 2 w(100) db
-
-#20 f2 cancel DBT 2,1
-f2 w(5) 12 w(35)  f34 w(10) 2 w(20) 1 w(90) db
-
-#20 f2 cancel DBT 1+2
-f2 w(5) 12 w(35)  f34 w(10) 12 w(110) db
-
 #20 f2,3,3
 f2 w(5) 3 w(20) 3
 
@@ -249,6 +201,54 @@ d(11)b(11) w(11) df12
 
 #20 SS 4,1+2
 s,,4 w(10) 12
+
+#20 DES 1
+d12 w(45) 1 w(80) db
+
+#20 DES 2
+d12 w(45) 2 w(70) db
+
+#20 DES 1+2
+d12 w(45) 12 w(80) db
+
+#20 DES f1
+d12 w(45) f1 w(60) db
+
+#20 DES f1+2
+d12 w(45) f12 w(80) db
+
+#20 DES f1+2,1+2
+d12 w(45) f12 w(40) 12 w(110) db
+
+#20 DES d1
+d12 w(45) d1 w(90) db
+
+#20 DES d2
+d12 w(45) d2 w(120) db
+
+#20 DES b2,1
+d12 w(45) b2 w(20) 1 w(80) db
+
+#10 DES u3+4,1
+d12 w(45) u34 w(10) 1 w(100) db
+
+#10 DES d3+4,1
+d12 w(45) d34 w(10) 1 w(100) db
+
+#20 DES df1+2 power crush
+d12 w(45) df12 df12 w(70) db
+
+#20 DBT 1
+d12 w(45)  f34 w(15) 1 w(90) db
+
+#20 DBT 2
+d12 w(45)  f34 w(15) 2 w(100) db
+
+#20 DBT 2,1
+d12 w(45)  f34 w(15) 2 w(20) 1 w(90) db
+
+#20 DBT 1+2
+d12 w(45)  f34 w(15) 12 w(110) db
 
 #10 10 hit string
 ub4 w(10) 1 w(20) 1 w(25) 2 w(25) 1 w(40) 1 w(30) 34 w(30) 3 w(30) 2 w(30) 2

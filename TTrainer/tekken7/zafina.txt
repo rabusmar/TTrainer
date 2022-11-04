@@ -1,0 +1,321 @@
+#10 1,2,3 into SCR 1
+1 w(5) 2 w(10) 3 w(40) 1 w(40) db
+
+#10 1,2,3 into SCR 1+2
+1 w(5) 2 w(10) 3 w(40) 12
+
+#10 1,2,3 into SCR 4
+1 w(5) 2 w(10) 3 w(40) 4 w(70) db
+
+#10 1,3 into SCR 1
+1 w(5) 3 w(40) 1 w(40) db
+
+#10 1,3 into SCR 1+2
+1 w(5) 3 w(40) 12
+
+#10 1,3 into SCR 4
+1 w(5) 3 w(40) 4 w(70) db
+
+#10 1,3 into SCR df4
+1 w(5) 3 w(40) df4
+
+#10 1,4
+1 w(5) 4 w(65) db
+
+#20 2,1,3
+2 w(8) 1 w(12) 3 w(95) db
+
+#10 2,1,3,db cancel into MNT 1
+2 w(8) 1 w(12) 3 w(30) d(5)b(5) w(25) 1
+
+#10 2,1,3,db cancel into MNT d3,1
+2 w(8) 1 w(12) 3 w(30) d(5)b(5) w(25) d3 w(10) 1 w(80) db
+
+#10 2,1,3,db cancel into MNT 1+2
+2 w(8) 1 w(12) 3 w(30) d(5)b(5) w(25) 12
+
+#40 2,2,1+2
+2 w(8) 2 w(12) 12
+
+#30 1+2
+12
+
+#15 1+2,4
+12 w(10) 4
+
+#15 1+2,4,4
+12 w(10) 4 w(15) 4
+
+#20 f2,3,4
+f2 w(12) 3 w(15) 4
+
+#15 f3 into SCR 1,4 into TRT 3
+f3 w(48) 1 w(8) 4 w(48) 3 w(65) db
+
+#15 f3 into SCR 1,4 into TRT 1+2
+f3 w(48) 1 w(8) 4 w(48) 12
+
+#20 f3 into SCR 2,2
+f3 w(48) 2 w(10) 2
+
+#10 f3 into SCR 1+2
+f3 w(48) 12
+
+#15 f3 into SCR 3,3
+f3 w(48) 3 w(15) 3 w(55) db
+
+#15 f3 into SCR 3,3,4
+f3 w(48) 3 w(15) 3 w(20) 4
+
+#20 f3 into SCR 3,f3
+f3 w(48) 3 w(15) f3 w(55) db
+
+#20 f3 into SCR 4
+f3 w(48) 4 w(70) db
+
+#20 f3 into SCR 3+4
+f3 w(48) 34
+
+#50 f3 into SCR df3,3
+f3 w(48) df3 w(15) 3
+
+#20 f3 into SCR df4
+f3 w(48) df4
+
+#15 f3 into SCR d3,3
+f3 w(48) d3 w(15) 3 w(65) db
+
+#15 f3 into SCR d3,d3 into SCR4
+f3 w(48) d3 w(15) d3 w(55) 4 w(70) db
+
+#50 f3 into SCR d4
+f3 w(48) d4
+
+#10 f1+2
+f12
+
+#25 df1,2
+df1 w(8) 2
+
+#25 df1,2,1
+df1 w(8) 2 w(15) 1
+
+#50 df1,4
+df1 w(8) 4
+
+#50 df2
+df2
+
+#50 df3,4
+df3 w(10) 4
+
+#50 df3,d4
+df3 w(10) d4
+
+#20 df4,1
+df4 w(10) 1
+
+#10 df4,1,db cancel into FC df3
+df4 w(10) 1 w(20) d(10)b(10) w(18) df3
+
+#20 df4,2
+df4 w(10) 2
+
+#25 df1+2
+df12
+
+#20 d1
+d1
+
+#20 d1,1
+d1 w(10) 1
+
+#10 d2,4 into MNT 1+2
+d2 w(10) 4 w(80) 12
+
+#10 d2,4 into MNT d3,1
+d2 w(10) 4 w(80) d3 w(10) 1 w(80) db
+
+#20 d2,4,3
+d2 w(10) 4 w(20) 3
+
+#20 d3 into MNT 1,3
+d3 w(20) d(5) w(30) 1 w(10) 3 w(55) db
+
+#20 d3 into MNT 2
+d3 w(20) d(5) w(30) 2 w(55) db
+
+#20 d3 into MNT 2,1
+d3 w(20) d(5) w(30) 2 w(10) 1 w(65) db
+
+#20 d3 into MNT 2,1,4
+d3 w(20) d(5) w(30) 2 w(10) 1 w(20) 4 w(85) db
+
+#10 d3 into MNT 3
+d3 w(20) d(5) w(30) 3 w(65) db
+
+#10 d3 into MNT 3,4
+d3 w(20) d(5) w(30) 3 w(10) 4 w(90) db
+
+#20 d3 into MNT 3,4,4
+d3 w(20) d(5) w(30) 3 w(10) 4 w(24) 4
+
+#20 d3 into MNT 3,4,d4
+d3 w(20) d(5) w(30) 3 w(10) 4 w(24) d4
+
+#10 d3 into MNT 4
+d3 w(20) d(5) w(30) 4 w(65) db
+
+#20 d3 into MNT 4,3
+d3 w(20) d(5) w(30) 4 w(8) 3 w(105) db
+
+#20 d3 into MNT 1+2
+d3 w(20) d(5) w(30) 12
+
+#10 d3 into MNT df2
+d3 w(20) d(5) w(30) df2
+
+#20 d3 into MNT df3
+d3 w(20) d(5) w(30) df3 w(65) db
+
+#10 d3 into MNT df4 into TRT 3
+d3 w(20) d(5) w(30) df4 w(50) 3 w(65) db
+
+#10 d3 into MNT df4 into TRT 1+2
+d3 w(20) d(5) w(30) df4 w(50) 12
+
+#10 d3 into MNT d1
+d3 w(20) d(5) w(30) d1 w(55) db
+
+#20 d3 into MNT d1,4
+d3 w(20) d(5) w(30) d1 w(10) 4
+
+#20 d3 into MNT d3,1
+d3 w(20) d(5) w(30) d3 w(10) 1 w(80) db
+
+#20 d3 into MNT d4
+d3 w(20) d(5) w(30) d4
+
+#10 d3 into MNT uf3
+d3 w(20) d(5) w(30) uf3
+
+#10 d4
+d4
+
+#40 d4,3
+d4 w(8) 3
+
+#10 db3
+db3 w(15) d(5)b(5)
+
+#10 db3 into SCR 1
+db3 w(40) 1 w(40) db
+
+#10 db3 into SCR 1+2
+db3 w(40) 12
+
+#10 db3 into SCR 4
+db3 w(40) 4 w(70) db
+
+#20 db4,2
+db4 w(10) 2
+
+#50 db1+2
+db12
+
+#50 db1+2,1+2
+db12 w(15) 12
+
+#50 b1
+b1
+
+#20 b3
+b3
+
+#20 b4,4
+b4 w(10) 4
+
+#20 b1+2
+b12
+
+#10 b2+3
+b23
+
+#50 uf4
+uf4
+
+#20 uf1+2 into TRT 3
+uf12 w(48) 3 w(65) db
+
+#20 uf1+2 into TRT 1+2
+uf12 w(48) 12
+
+#10 ff3 into SCR 1
+f,,f(2),3 w(48) 1 w(40) db
+
+#10 ff3 into SCR 1+2
+f,,f(2),3 w(48) 12
+
+#20 ff3,1
+f,,f(2),3 w(10) 1
+
+#25 ff3+4
+f,,f(2),34
+
+#25 ff3+4,d cancel
+f,,f(2),34 w(45) d(5) w(35) db
+
+#25 ws 1
+d(6)b(6)w(6) 1
+
+#25 ws 1,2
+d(6)b(6)w(6) 1 w(10) 2
+
+#25 ws 2
+d(6)b(6)w(6) 2
+
+#25 ws 2,db cancel
+d(6)b(6)w(6) 2 w(20) d(5)b(5) w(75) db
+
+#100 FC df3
+d(11)b(11)w(11) df3
+
+#10 TRT 1 into TRT 1+2
+d12 w(30) 1 w(48) 12
+
+#10 TRT 2 into TRT 1+2
+d12 w(30) 3 w(48) 12
+
+#20 TRT 4,3
+d12 w(30) 4 w(10) 3
+
+#20 TRT 1+2
+d12 w(30) 12
+
+#20 TRT d1+2
+d12 w(30) d12 w(70) db
+
+#10 10 hit string 1
+df1 w(10) 4 w(15) 2 w(20) 3 w(30) 4 w(25) 1 w(25) 3 w(35) 2 w(30) 4 w(20) 2
+
+#10 10 hit string 2
+df1 w(10) 4 w(15) 2 w(20) 3 w(30) 4 w(25) 1 w(25) d3 w(30) 3 w(45) 2 w(35) 2
+
+#50 1+3 grab
+13
+
+#50 f1+3 grab
+f13
+
+#50 2+4 grab
+24
+
+#50 f2+4 grab
+f24
+
+#100 ff1+2 grab
+f,,f(2),12
+
+#50 b13 parry
+b13 w(50) b(30)
+
