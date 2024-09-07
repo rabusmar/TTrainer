@@ -2,11 +2,9 @@
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace TTrainer
-{
+namespace TTrainer {
     // from https://stackoverflow.com/questions/2450373/set-global-hotkeys-using-c-sharp
-    public sealed class KeyboardShortcut : IDisposable
-    {
+    public sealed class KeyboardShortcut : IDisposable {
         // Registers a hot key with Windows.
         [DllImport("user32.dll")]
         private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
@@ -17,12 +15,10 @@ namespace TTrainer
         /// <summary>
         /// Represents the window that is used internally to get the messages.
         /// </summary>
-        private class Window : NativeWindow, IDisposable
-        {
+        private class Window : NativeWindow, IDisposable {
             private static int WM_HOTKEY = 0x0312;
 
-            public Window()
-            {
+            public Window() {
                 // create the handle for the window.
                 this.CreateHandle(new CreateParams());
             }
@@ -31,13 +27,11 @@ namespace TTrainer
             /// Overridden to get the notifications.
             /// </summary>
             /// <param name="m"></param>
-            protected override void WndProc(ref Message m)
-            {
+            protected override void WndProc(ref Message m) {
                 base.WndProc(ref m);
 
                 // check if we got a hot key pressed.
-                if (m.Msg == WM_HOTKEY)
-                {
+                if (m.Msg == WM_HOTKEY) {
                     // get the keys.
                     Keys key = (Keys)(((int)m.LParam >> 16) & 0xFFFF);
                     ModKeys modifier = (ModKeys)((int)m.LParam & 0xFFFF);
@@ -52,8 +46,7 @@ namespace TTrainer
 
             #region IDisposable Members
 
-            public void Dispose()
-            {
+            public void Dispose() {
                 this.DestroyHandle();
             }
 
@@ -63,11 +56,9 @@ namespace TTrainer
         private Window _window = new Window();
         private int _currentId;
 
-        public KeyboardShortcut()
-        {
+        public KeyboardShortcut() {
             // register the event of the inner native window.
-            _window.KeyPressed += delegate (object sender, KeyPressedEventArgs args)
-            {
+            _window.KeyPressed += delegate (object sender, KeyPressedEventArgs args) {
                 if (KeyPressed != null)
                     KeyPressed(this, args);
             };
@@ -78,8 +69,7 @@ namespace TTrainer
         /// </summary>
         /// <param name="modifier">The modifiers that are associated with the hot key.</param>
         /// <param name="key">The key itself that is associated with the hot key.</param>
-        public void RegisterHotKey(ModKeys modifier, Keys key)
-        {
+        public void RegisterHotKey(ModKeys modifier, Keys key) {
             // increment the counter.
             _currentId = _currentId + 1;
 
@@ -95,11 +85,9 @@ namespace TTrainer
 
         #region IDisposable Members
 
-        public void Dispose()
-        {
+        public void Dispose() {
             // unregister all the registered hot keys.
-            for (int i = _currentId; i > 0; i--)
-            {
+            for (int i = _currentId; i > 0; i--) {
                 UnregisterHotKey(_window.Handle, i);
             }
 
@@ -113,24 +101,20 @@ namespace TTrainer
     /// <summary>
     /// Event Args for the event that is fired after the hot key has been pressed.
     /// </summary>
-    public class KeyPressedEventArgs : EventArgs
-    {
+    public class KeyPressedEventArgs : EventArgs {
         private ModKeys _modifier;
         private Keys _key;
 
-        internal KeyPressedEventArgs(ModKeys modifier, Keys key)
-        {
+        internal KeyPressedEventArgs(ModKeys modifier, Keys key) {
             _modifier = modifier;
             _key = key;
         }
 
-        public ModKeys Modifier
-        {
+        public ModKeys Modifier {
             get { return _modifier; }
         }
 
-        public Keys Key
-        {
+        public Keys Key {
             get { return _key; }
         }
     }
@@ -139,8 +123,7 @@ namespace TTrainer
     /// The enumeration of possible modifiers.
     /// </summary>
     [Flags]
-    public enum ModKeys : uint
-    {
+    public enum ModKeys : uint {
         Alt = 1,
         Control = 2,
         Shift = 4,

@@ -5,10 +5,8 @@ using System.Diagnostics;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace TTrainer
-{
-    internal class T7Command
-    {
+namespace TTrainer {
+    internal class T7Command {
         string command;
         T7Config config;
         bool p1;
@@ -16,21 +14,17 @@ namespace TTrainer
         List<PressedKey> pressed = new List<PressedKey>();
         int pos = 0;
 
-        T7Command(string _command, T7Config _config, bool _p1, int _line)
-        {
+        T7Command(string _command, T7Config _config, bool _p1, int _line) {
             command = _command;
             config = _config;
             p1 = _p1;
             line = _line;
         }
 
-        void Execute()
-        {
-            for (; pos < command.Length; pos++)
-            {
+        void Execute() {
+            for (; pos < command.Length; pos++) {
                 var key = Keys.None;
-                switch (command[pos])
-                {
+                switch (command[pos]) {
                     case 'f':
                     case 'F':
                         key = config == T7Config.K1 ? (p1 ? Keys.D : Keys.A) : (p1 ? Keys.Right : Keys.Left);
@@ -80,8 +74,7 @@ namespace TTrainer
 
                 Keyboard.KeyDown(key);
 
-                pressed.Add(new PressedKey
-                {
+                pressed.Add(new PressedKey {
                     key = key,
                     frames = GetFrames(),
                 });
@@ -91,85 +84,65 @@ namespace TTrainer
             SleepUpTo(-1);
         }
 
-        private int GetFrames()
-        {
-            if (pos + 1 >= command.Length || command[pos + 1] != '(')
-            {
+        private int GetFrames() {
+            if (pos + 1 >= command.Length || command[pos + 1] != '(') {
                 return 1;
             }
 
             pos++;
 
-            for (int i = 1; pos + i < command.Length; i++)
-            {
-                if (command[pos + i] == ')')
-                {
-                    if (i == 1)
-                    {
+            for (int i = 1; pos + i < command.Length; i++) {
+                if (command[pos + i] == ')') {
+                    if (i == 1) {
                         throw new Exception($"Unexpected '{command[pos + i]}' at line {line} pos {pos + i + 1}.");
                     }
                     var str = command.Substring(pos + 1, i - 1);
                     pos += i;
                     return int.Parse(str);
-                }
-                else if (!char.IsDigit(command[pos + i]))
-                {
+                } else if (!char.IsDigit(command[pos + i])) {
                     throw new Exception($"Invalid character '{command[pos + i]}' at line {line} pos {pos + i + 1}.");
                 }
             }
             throw new Exception($"Missing closing ')' opened at line {line} pos {pos + 1}.");
         }
 
-        private void SleepUpTo(int maxFrames)
-        {
+        private void SleepUpTo(int maxFrames) {
             var watch = new Stopwatch();
 
             // wait up to 600 frames (10 seconds) max
-            for (var i = 0; i < 600 && (maxFrames == -1 || i < maxFrames); i++)
-            {
+            for (var i = 0; i < 600 && (maxFrames == -1 || i < maxFrames); i++) {
                 // Thread.Sleep(TimeSpan.FromTicks(166_667)); // 1 frame ~= 16.6667 msec (60 fps)
                 // wait for 1 frame, can't use Thread.Sleep because it's not exact
                 watch.Restart();
-                while (true)
-                {
+                while (true) {
                     if (watch.ElapsedTicks > 166_666) break;
                 }
                 watch.Stop();
 
                 // release pressed keys
                 var count = pressed.Count;
-                if (count > 0)
-                {
-                    for (var j = count - 1; j >= 0; j--)
-                    {
+                if (count > 0) {
+                    for (var j = count - 1; j >= 0; j--) {
                         var el = pressed[j];
                         el.frames -= 1;
                         pressed[j] = el;
-                        if (el.frames <= 0)
-                        {
+                        if (el.frames <= 0) {
                             Keyboard.KeyUp(el.key);
                             pressed.RemoveAt(j);
                         }
                     }
-                }
-                else if (maxFrames == -1)
-                {
+                } else if (maxFrames == -1) {
                     break;
                 }
             }
         }
 
-        public static Thread ExecuteCmd(string _command, T7Config _config, bool _p1, int _line)
-        {
-            var thread = new Thread(() =>
-            {
+        public static Thread ExecuteCmd(string _command, T7Config _config, bool _p1, int _line) {
+            var thread = new Thread(() => {
                 var t7cmd = new T7Command(_command, _config, _p1, _line);
-                try
-                {
+                try {
                     t7cmd.Execute();
-                }
-                catch (Exception ex)
-                {
+                } catch (Exception ex) {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     t7cmd.SleepUpTo(-1);
                 }
@@ -177,15 +150,13 @@ namespace TTrainer
             thread.Start();
             return thread;
         }
-        struct PressedKey
-        {
+        struct PressedKey {
             public Keys key;
             public int frames;
         }
     }
 
-    public enum T7Config
-    {
+    public enum T7Config {
         K1, K2
     }
 }
